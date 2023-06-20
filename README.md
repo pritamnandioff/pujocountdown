@@ -1,6 +1,6 @@
 # pujocountdown
 
-A new Flutter project.
+Countdown puja
 
 ## Getting Started
 
