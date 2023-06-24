@@ -46,6 +46,7 @@ import 'dart:async';
 
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:pujocountdown/responsive.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -152,237 +153,108 @@ class _HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlipCard(
-              flipOnTouch: false,
-              key: daysCardKey,
-              direction: FlipDirection.VERTICAL, // Flip horizontally
-              front: Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 240, 181, 16),
-                    borderRadius: BorderRadius.circular(16)),
-                width: MediaQuery.of(context).size.width / 7,
-                // height: 120,
-                alignment: Alignment.center,
-                child: Text(
-                  formatTime(timeRemaining.inDays),
-                  style: const TextStyle(
-                    fontSize: 72,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+            if (Responsive.isMobile(context))
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      flipper(daysCardKey, timeRemaining.inDays, "Days"),
+                      flipper(hoursCardKey, timeRemaining.inHours % 24, "Hour"),
+                    ],
                   ),
-                ),
+                  // const SizedBox(
+                  //   height: 100,
+                  // ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      flipper(munitesCardKey, timeRemaining.inMinutes % 60,
+                          "Munite"),
+                      flipper(secoundCardKey, timeRemaining.inSeconds % 60,
+                          "Secound"),
+                    ],
+                  ),
+                ],
               ),
-              back: Container(
-                padding: EdgeInsets.all(16),
-                width: 80,
-                height: 120,
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 240, 181, 16),
-                    borderRadius: BorderRadius.circular(16)),
-                alignment: Alignment.center,
-                child: Text(
-                  formatTime((timeRemaining.inDays + 1)),
-                  style: const TextStyle(
-                    fontSize: 72,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Days',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FlipCard(
-                  flipOnTouch: false,
-                  key: hoursCardKey,
-                  direction: FlipDirection.VERTICAL,
-                  front: Container(
-                    padding: EdgeInsets.all(16),
-                    // width: 80,
-                    // height: 120,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime(timeRemaining.inHours % 24),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+            if (!Responsive.isMobile(context))
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  flipper(daysCardKey, timeRemaining.inDays, "Days"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      flipper(hoursCardKey, timeRemaining.inHours % 24, "Hour"),
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ),
-                  back: Container(
-                    padding: EdgeInsets.all(16),
-                    // width: 80,
-                    // height: 120,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime((timeRemaining.inHours % 24) + 1),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                      flipper(munitesCardKey, timeRemaining.inMinutes % 60,
+                          "Munite"),
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                FlipCard(
-                  flipOnTouch: false,
-                  key: munitesCardKey,
-                  direction: FlipDirection.VERTICAL,
-                  front: Container(
-                    padding: EdgeInsets.all(16),
-                    // width: 80,
-                    // height: 120,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime(timeRemaining.inMinutes % 24),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  back: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    // width: 80,
-                    // height: 120,
-
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime((timeRemaining.inMinutes % 24) + 1),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                FlipCard(
-                  flipOnTouch: false,
-                  key: secoundCardKey,
-                  direction: FlipDirection.VERTICAL,
-                  front: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime(timeRemaining.inSeconds % 60),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  back: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 240, 181, 16),
-                        borderRadius: BorderRadius.circular(16)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      formatTime((timeRemaining.inSeconds % 60) + 1),
-                      style: const TextStyle(
-                        fontSize: 72,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Hours    Minutes    Seconds',
-              style: TextStyle(fontSize: 20),
-            ),
-            // ScrollingText(
-            //   text: "Pujo is comming",
-            //   textStyle: TextStyle(fontSize: 12),
-            // ),
-            // if (_isAdLoaded)
-            //   Container(
-            //     alignment: Alignment.center,
-            //     width: _bannerAd!.size.width.toDouble(),
-            //     height: _bannerAd!.size.height.toDouble(),
-            //     child: AdWidget(ad: _bannerAd!),
-            //   )
-            // else
-            //   Container(
-            //     height: _bannerAd!.size.height.toDouble(),
-            //   ),
+                      flipper(secoundCardKey, timeRemaining.inSeconds % 60,
+                          "Secound"),
+                    ],
+                  )
+                ],
+              )
           ],
         ),
       ),
     );
   }
 
-  FlipCard flipper(GlobalKey cardKey, int time) {
-    return FlipCard(
-      key: cardKey,
-      fill: Fill.fillFront,
-      direction: FlipDirection.VERTICAL,
-      front: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 240, 181, 16),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          // formatTime(timeRemaining.inSeconds % 60),
-          formatTime(time),
-
-          style: const TextStyle(
-            fontSize: 72,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+  Widget flipper(
+    GlobalKey cardKey,
+    int time,
+    String title,
+  ) {
+    return Column(
+      children: [
+        FlipCard(
+          flipOnTouch: false,
+          key: cardKey,
+          fill: Fill.fillFront,
+          direction: FlipDirection.VERTICAL,
+          front: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color.fromARGB(255, 240, 181, 16),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              formatTime(time),
+              style: const TextStyle(
+                fontSize: 72,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          back: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color.fromARGB(255, 240, 181, 16),
+            ),
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: Text(
+              formatTime((time + 1)),
+              style: const TextStyle(
+                fontSize: 72,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
-      ),
-      back: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 240, 181, 16),
+        SizedBox(
+          height: 10,
         ),
-        padding: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        child: Text(
-          formatTime((timeRemaining.inSeconds % 60)),
-          style: const TextStyle(
-            fontSize: 72,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+        Text(title)
+      ],
     );
   }
 }
