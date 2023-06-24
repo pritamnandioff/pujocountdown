@@ -95,6 +95,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      extendBody: true,
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -104,193 +106,204 @@ class _HomeState extends State<Home> {
         child: Stack(
           alignment: Alignment.topRight,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (Responsive.isMobile(context))
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: Image.asset("assets/images/ma_durga.png"),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        "মা আসছে",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      kDefaulCountDown,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          flipper(daysCardKey, timeRemaining.inDays, "Days"),
-                          Column(
-                            children: const [
-                              Text(
-                                " : ",
-                                style: TextStyle(
-                                  fontSize: 72,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+            RefreshIndicator(
+              onRefresh: () async {
+                await Future(() {
+                  setState(() {});
+                });
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (Responsive.isMobile(context))
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 100,
+                          child: Image.asset("assets/images/ma_durga.png"),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "মা আসছে",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        kDefaulCountDown,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            flipper(
+                                daysCardKey, timeRemaining.inDays, "Days"),
+                            Column(
+                              children: const [
+                                Text(
+                                  " : ",
+                                  style: TextStyle(
+                                    fontSize: 72,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("")
-                            ],
-                          ),
-                          flipper(
-                              hoursCardKey, timeRemaining.inHours % 24, "Hour"),
-                        ],
-                      ),
-                      kDefaulCountDown,
-                      SizedBox(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: const ScrollingText(
-                            text:
-                                "!... 🙏 Hold your breath Durga Puja is coming 🙏...!!",
-                            textStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600)),
-                      ),
-                      kDefaulCountDown,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          flipper(munitesCardKey, timeRemaining.inMinutes % 60,
-                              "Munite"),
-                          Column(
-                            children: const [
-                              Text(
-                                " : ",
-                                style: TextStyle(
-                                  fontSize: 72,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("")
-                            ],
-                          ),
-                          flipper(secoundCardKey, timeRemaining.inSeconds % 60,
-                              "Secound"),
-                        ],
-                      ),
-                      kDefaulCountDown
-                    ],
-                  ),
+                                Text("")
+                              ],
+                            ),
+                            flipper(hoursCardKey, timeRemaining.inHours % 24,
+                                "Hour"),
+                          ],
+                        ),
+                        kDefaulCountDown,
+                        SizedBox(
+                          height: 100,
+                          width: MediaQuery.of(context).size.width - 20,
+                          child: const ScrollingText(
+                              text:
+                                  "!... 🙏 Hold your breath Durga Puja is coming 🙏...!!",
+                              textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        kDefaulCountDown,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            flipper(munitesCardKey,
+                                timeRemaining.inMinutes % 60, "Munite"),
+                            Column(
+                              children: const [
+                                Text(
+                                  " : ",
+                                  style: TextStyle(
+                                    fontSize: 72,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("")
+                              ],
+                            ),
+                            flipper(secoundCardKey,
+                                timeRemaining.inSeconds % 60, "Secound"),
+                          ],
+                        ),
+                        kDefaulCountDown
+                      ],
+                    ),
 
-                //desktop
+                  //desktop
 
-                if (!Responsive.isMobile(context))
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: Image.asset("assets/images/ma_durga.png"),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Text(
-                        "মা আসছে",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      kDefaulCountDown,
-                      SizedBox(
-                        width: 150,
-                        child:
-                            flipper(daysCardKey, timeRemaining.inDays, "Days"),
-                      ),
-                      kDefaulCountDown,
-                      SizedBox(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width - 20,
-                        child: const ScrollingText(
-                            text:
-                                "!... 🙏 Hold your breath Durga Puja is coming 🙏...!!",
-                            textStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600)),
-                      ),
-                      kDefaulCountDown,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          flipper(
-                              hoursCardKey, timeRemaining.inHours % 24, "Hour"),
-                          Column(
-                            children: const [
-                              Text(
-                                " : ",
-                                style: TextStyle(
-                                  fontSize: 72,
+                  if (!Responsive.isMobile(context))
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 100,
+                          child: Image.asset("assets/images/ma_durga.png"),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "মা আসছে",
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        kDefaulCountDown,
+                        SizedBox(
+                          width: 150,
+                          child: flipper(
+                              daysCardKey, timeRemaining.inDays, "Days"),
+                        ),
+                        kDefaulCountDown,
+                        SizedBox(
+                          height: 100,
+                          width: MediaQuery.of(context).size.width - 20,
+                          child: const ScrollingText(
+                              text:
+                                  "!... 🙏 Hold your breath Durga Puja is coming 🙏...!!",
+                              textStyle: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        kDefaulCountDown,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            flipper(hoursCardKey, timeRemaining.inHours % 24,
+                                "Hour"),
+                            Column(
+                              children: const [
+                                Text(
+                                  " : ",
+                                  style: TextStyle(
+                                    fontSize: 72,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("")
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          flipper(munitesCardKey, timeRemaining.inMinutes % 60,
-                              "Munite"),
-                          Column(
-                            children: const [
-                              Text(
-                                " : ",
-                                style: TextStyle(
-                                  fontSize: 72,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  height: 10,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("")
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          flipper(secoundCardKey, timeRemaining.inSeconds % 60,
-                              "Secound"),
-                        ],
-                      ),
-                      kDefaulCountDown
-                    ],
-                  )
-              ],
+                                Text("")
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            flipper(munitesCardKey,
+                                timeRemaining.inMinutes % 60, "Munite"),
+                            Column(
+                              children: const [
+                                Text(
+                                  " : ",
+                                  style: TextStyle(
+                                    fontSize: 72,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text("")
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            flipper(secoundCardKey,
+                                timeRemaining.inSeconds % 60, "Secound"),
+                          ],
+                        ),
+                        kDefaulCountDown
+                      ],
+                    ),
+                ],
+              ),
             ),
             Positioned(
-                child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.asset("assets/images/ma_durga.png")))
+              child: SizedBox(
+                height: 100,
+                width: 100,
+                child: Image.network(
+                    "https://media.giphy.com/media/vzZFTW5cprX5HjEpyY/giphy.gif",),
+              ),
+            )
           ],
         ),
       ),
