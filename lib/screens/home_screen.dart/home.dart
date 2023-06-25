@@ -5,6 +5,7 @@ import 'package:pujocountdown/responsive.dart';
 import 'package:pujocountdown/screens/home_screen.dart/widgets/scrollable_text.dart';
 import 'package:pujocountdown/screens/ui/footer.dart';
 import '../../const.dart';
+import '../ui/add_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -133,8 +134,7 @@ class _HomeState extends State<Home> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            flipper(
-                                daysCardKey, timeRemaining.inDays, "Days"),
+                            flipper(daysCardKey, timeRemaining.inDays, "Days"),
                             Column(
                               children: const [
                                 Text(
@@ -307,7 +307,12 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar: const Footer(),
+      bottomNavigationBar: Column(
+        children: [
+          adsenseAdsView(),
+          const Footer(),
+        ],
+      ),
     );
   }
 
