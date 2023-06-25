@@ -95,6 +95,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(),
       backgroundColor: Colors.white,
       extendBody: true,
       body: Container(
@@ -106,12 +107,7 @@ class _HomeState extends State<Home> {
         child: Stack(
           alignment: Alignment.topRight,
           children: [
-            RefreshIndicator(
-              onRefresh: () async {
-                await Future(() {
-                  setState(() {});
-                });
-              },
+            SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -197,7 +193,10 @@ class _HomeState extends State<Home> {
                                 timeRemaining.inSeconds % 60, "Secound"),
                           ],
                         ),
-                        kDefaulCountDown
+                        kDefaulCountDown,
+                        SizedBox(
+                          height: 200,
+                        ),
                       ],
                     ),
 
@@ -301,7 +300,8 @@ class _HomeState extends State<Home> {
                 height: 100,
                 width: 100,
                 child: Image.network(
-                    "https://media.giphy.com/media/vzZFTW5cprX5HjEpyY/giphy.gif",),
+                  "https://media.giphy.com/media/vzZFTW5cprX5HjEpyY/giphy.gif",
+                ),
               ),
             )
           ],
