@@ -108,12 +108,12 @@ class _HomeState extends State<Home> {
         child: Stack(
           alignment: Alignment.topRight,
           children: [
-            SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (Responsive.isMobile(context))
-                    Column(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (Responsive.isMobile(context))
+                  SingleChildScrollView(
+                    child: Column(
                       children: [
                         SizedBox(
                           height: 100,
@@ -194,16 +194,16 @@ class _HomeState extends State<Home> {
                           ],
                         ),
                         kDefaulCountDown,
-                        SizedBox(
-                          height: 200,
-                        ),
+                        // adsenseAdsView(context),
                       ],
                     ),
+                  ),
 
-                  //desktop
+                //desktop
 
-                  if (!Responsive.isMobile(context))
-                    Column(
+                if (!Responsive.isMobile(context))
+                  SingleChildScrollView(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
@@ -289,11 +289,12 @@ class _HomeState extends State<Home> {
                                 timeRemaining.inSeconds % 60, "Secound"),
                           ],
                         ),
-                        kDefaulCountDown
+                        kDefaulCountDown,
+                        // adsenseAdsView(context),
                       ],
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
             Positioned(
               child: SizedBox(
@@ -307,12 +308,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar: Column(
-        children: [
-          adsenseAdsView(),
-          const Footer(),
-        ],
-      ),
+      // bottomNavigationBar: adsenseAdsView(context),
     );
   }
 
