@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flip_card: ^0.7.0
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_test:
