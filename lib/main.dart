@@ -3,7 +3,7 @@ import 'package:pujocountdown/screens/home_screen.dart/home.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 main() {
-  setPathUrlStrategy();
+  setPathUrlStrategy(); 
   runApp(const MyApp());
 }
 
