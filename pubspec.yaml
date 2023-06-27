@@ -1,5 +1,5 @@
 name: pujocountdown
-description: how many days remained for durgapuja 2023.
+description: Discover the countdown to Durga Puja 2023 and the exciting details about this auspicious festival. Learn about the Durga Puja dates, significance, Durga Puja pratima, and immerse yourself in the joyous celebrations of Maa Durga.
 
 version: 1.0.0+1
 
@@ -12,6 +12,9 @@ dependencies:
   flip_card: ^0.7.0
   url_strategy: ^0.2.0
 
+  fluttertoast: ^8.2.2
+  toast: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -21,3 +24,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/svg/

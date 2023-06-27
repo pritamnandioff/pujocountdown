@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pujocountdown/screens/home_screen.dart/home.dart';
+import 'package:pujocountdown/screens/home_screen/home.dart';
+
 import 'package:url_strategy/url_strategy.dart';
 
 main() {
-  setPathUrlStrategy(); 
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Home(),
+      // home: const Test(),
     );
   }
 }
