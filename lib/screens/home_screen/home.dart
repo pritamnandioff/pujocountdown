@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  DateTime targetDate = DateTime(2023, 10, 20);
+  DateTime targetDate = DateTime(2024, 10, 09);
   late DateTime currentDate;
   late Duration timeRemaining;
   GlobalKey<FlipCardState> daysCardKey = GlobalKey<FlipCardState>();
